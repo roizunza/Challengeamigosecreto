@@ -1,18 +1,16 @@
 // Definición de variable global array para almacenar el nombre de los amigos
 let amigos = [];
 
-//Función para mostrar los nombres de los amigos ingresados en la lista HTML
+// Función para mostrar los nombres de los amigos ingresados en la lista HTML
 function mostrarAmigos() {
-    //Referenciar la lista en el HTML para que se muestren los amigos
+    // Referenciar la lista en el HTML para que se muestren los amigos
     let lista = document.getElementById('listaAmigos');
-
-    //Limpiar la lista para evitar los duplicados
+    // Limpiar la lista para evitar los duplicados
     lista.innerHTML = "";
-
-    //Recorrer el array de amigos
+    // Recorrer el array de amigos
     for (let i = 0; i < amigos.length; i++) {
-        let li = document.createElement('li'); //creación de la variable local <li>
-        li.textContent = amigos [i]; //poner el nombre del amigo dentro del <li>
+        let li = document.createElement('li'); // creación de la variable local <li>
+        li.textContent = amigos[i]; // poner el nombre del amigo dentro del <li>
         lista.appendChild(li); // agregar el <li> a la lista
     }
 }
@@ -38,4 +36,21 @@ function agregarAmigo() {
     console.log("Lista de amigos:", amigos);
 
     mostrarAmigos(); // Actualiza la lista en pantalla
+}
+
+// Función para sortear el nombre de un amigo secreto
+function sortearAmigo() {
+    // Validar que haya nombres que sortear en la lista de amigos
+    if (amigos.length === 0) {
+        alert("No hay amigos para sortear. Por favor, añade el nombre de tus amigos");
+        return;
+    }
+
+    let indiceAleatorio = Math.floor(Math.random() * amigos.length); // Generar un índice aleatorio dentro del rango del array
+    let amigoSeleccionado = amigos[indiceAleatorio];
+
+    // Mostrar el resultado en el elemento HTML con id "resultado"
+    document.getElementById('resultado').innerHTML = `<li>El amigo secreto es: <strong>${amigoSeleccionado}</strong></li>`;
+
+    console.log("Amigo sorteado:", amigoSeleccionado);
 }
